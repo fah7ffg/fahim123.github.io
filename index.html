@@ -1,29 +1,156 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fahim-er Website</title>
-  <style>
-    body{font-family:system-ui, "Noto Sans Bengali",sans-serif;max-width:800px;margin:40px auto;padding:0 16px;line-height:1.6;background:#f4f4f4;}
-    header{background:#fff;padding:20px;border-radius:12px;box-shadow:0 0 6px rgba(0,0,0,0.1);}
-    h1{color:#333;margin:0 0 8px;}
-    footer{margin-top:30px;font-size:13px;color:#555;text-align:center;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MySocial Pro 🫶</title>
+<style>
+/* ================= General ================= */
+body{margin:0;padding:0;font-family:'Arial',sans-serif;background:#f0f2f5;}
+h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
+button{cursor:pointer;}
+/* ================= Header ================= */
+header{background:#4267B2;color:white;display:flex;justify-content:space-between;align-items:center;padding:20px 30px;position:sticky;top:0;z-index:100;box-shadow:0 3px 8px rgba(0,0,0,0.3);}
+header h1{font-size:36px;}
+header input{padding:12px 20px;border-radius:30px;border:none;outline:none;width:50%;font-size:18px;}
+header button{padding:12px 20px;border-radius:10px;border:none;background:#2e81f4;color:white;font-size:18px;transition:background 0.3s;}
+header button:hover{background:#1d5bbf;}
+/* ================= Main ================= */
+main{max-width:700px;margin:30px auto;padding:0 15px;}
+#new-post{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,0.2);margin-bottom:30px;}
+#new-post textarea{width:100%;height:120px;padding:15px;border-radius:12px;border:1px solid #ccc;resize:none;font-size:18px;}
+#new-post button{margin-top:15px;padding:12px 25px;background:#4267B2;color:white;border:none;border-radius:10px;font-size:18px;transition:background 0.3s;}
+#new-post button:hover{background:#365899;}
+.post{background:white;padding:25px;border-radius:15px;box-shadow:0 4px 10px rgba(0,0,0,0.15);margin-bottom:30px;word-wrap:break-word;}
+.post h2{margin-bottom:8px;font-size:28px;color:#4267B2;}
+.post p{margin-bottom:15px;font-size:20px;}
+.post .timestamp{font-size:14px;color:gray;margin-bottom:10px;}
+.post button{padding:10px 20px;border:none;border-radius:10px;background:#2e81f4;color:white;font-size:18px;margin-right:10px;transition:background 0.3s;}
+.post button:hover{background:#1d5bbf;}
+.comment-section{margin-top:15px;}
+.comment-section input{width:70%;padding:8px;border-radius:8px;border:1px solid #ccc;margin-right:10px;font-size:16px;}
+.comment-section button{padding:8px 12px;border-radius:8px;border:none;background:#4267B2;color:white;font-size:16px;}
+.comment-section button:hover{background:#365899;}
+.comment{background:#f0f2f5;padding:8px 12px;border-radius:10px;margin-top:8px;font-size:16px;}
+</style>
 </head>
 <body>
-  <header>
-    <h1>🌟 স্বাগতম, ফাহিম!</h1>
-    <p>এইটা তোমার ফোন দিয়ে বানানো একদম ফ্রি ও রিয়েল ওয়েবসাইট 💻🔥</p>
-  </header>
+<header>
+<h1>MySocial Pro 🫶</h1>
+<input type="text" id="search" placeholder="Search...">
+<button onclick="login()">Login</button>
+</header>
 
-  <main>
-    <p>তুমি এখন চাইলে নিজের লেখা, ছবি বা নতুন পেজ যোগ করতে পারো!</p>
-    <p>এই সাইটটা ইন্টারনেটে সবার জন্য দেখা যাবে।</p>
-  </main>
+<main>
+<section id="new-post">
+<textarea id="post-text" placeholder="What's on your mind?"></textarea>
+<button onclick="addPost()">Post</button>
+</section>
 
-  <footer>
-    © 2025 Fahim | Hosted Free on GitHub Pages
-  </footer>
+<div id="feed">
+<!-- Posts will appear here -->
+</div>
+</main>
+
+<script>
+// ================= Users =================
+let currentUser = "User1";
+let posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+// ================= Login =================
+function login(){
+    const user = prompt("Enter your username:");
+    if(user){
+        currentUser=user;
+        alert("Welcome, "+currentUser+"!");
+    }
+}
+
+// ================= Add Post =================
+function addPost(){
+    const textArea = document.getElementById("post-text");
+    const text = textArea.value.trim();
+    if(text===""){alert("Write something!"); return;}
+    const timestamp = new Date().toLocaleString();
+    const post = {user:currentUser,text:text,time:timestamp,likes:0,comments:[]};
+    posts.unshift(post);
+    localStorage.setItem('posts',JSON.stringify(posts));
+    renderPosts();
+    textArea.value="";
+}
+
+// ================= Like Post =================
+function likePost(index){
+    posts[index].likes++;
+    localStorage.setItem('posts',JSON.stringify(posts));
+    renderPosts();
+}
+
+// ================= Add Comment =================
+function addComment(index){
+    const input = document.getElementById('comment-input-'+index);
+    const commentText = input.value.trim();
+    if(commentText===""){return;}
+    posts[index].comments.push({user:currentUser,text:commentText});
+    localStorage.setItem('posts',JSON.stringify(posts));
+    renderPosts();
+}
+
+// ================= Render Posts =================
+function renderPosts(){
+    const feed = document.getElementById('feed');
+    feed.innerHTML="";
+    posts.forEach((post,index)=>{
+        const postDiv=document.createElement('div');
+        postDiv.classList.add('post');
+
+        const userName = document.createElement('h2');
+        userName.innerText = post.user;
+        postDiv.appendChild(userName);
+
+        const time = document.createElement('div');
+        time.classList.add('timestamp');
+        time.innerText = post.time;
+        postDiv.appendChild(time);
+
+        const postContent = document.createElement('p');
+        postContent.innerText = post.text;
+        postDiv.appendChild(postContent);
+
+        const likeBtn=document.createElement('button');
+        likeBtn.innerText="Like 👍 ("+post.likes+")";
+        likeBtn.onclick=function(){likePost(index);};
+        postDiv.appendChild(likeBtn);
+
+        // Comment Section
+        const commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment-section');
+
+        const commentInput = document.createElement('input');
+        commentInput.placeholder="Write a comment...";
+        commentInput.id='comment-input-'+index;
+        commentDiv.appendChild(commentInput);
+
+        const commentBtn = document.createElement('button');
+        commentBtn.innerText="Comment";
+        commentBtn.onclick=function(){addComment(index);};
+        commentDiv.appendChild(commentBtn);
+
+        // Show existing comments
+        post.comments.forEach(c=>{
+            const cDiv=document.createElement('div');
+            cDiv.classList.add('comment');
+            cDiv.innerText=c.user+": "+c.text;
+            commentDiv.appendChild(cDiv);
+        });
+
+        postDiv.appendChild(commentDiv);
+        feed.appendChild(postDiv);
+    });
+}
+
+// ================= Initial Render =================
+renderPosts();
+</script>
 </body>
-</html>
+  </html>
