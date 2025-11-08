@@ -1,0 +1,118 @@
+/* Body Styling */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb; /* হালকা গ্রে ব্যাকগ্রাউন্ড */
+  color: #1f2937; /* ডার্ক গ্রে টেক্সট */
+  line-height: 1.6;
+}
+
+/* Links Styling */
+a {
+  transition: all 0.3s ease;
+  color: #3b82f6; /* প্রাইমারি ব্লু */
+  text-decoration: none;
+}
+a:hover {
+  color: #1e40af; /* ডার্কার ব্লু হোভার */
+  text-decoration: underline;
+}
+
+/* Header */
+header {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer {
+  background-color: #111827;
+  color: #f9fafb;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+/* Buttons */
+button, .btn {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+button:hover, .btn:hover {
+  background-color: #1e40af;
+  transform: translateY(-2px);
+}
+
+/* Forms */
+input, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db; /* হালকা গ্রে */
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+input:focus, textarea:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+/* Images */
+img {
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+img:hover {
+  transform: scale(1.03);
+}
+
+/* Headings */
+h1, h2, h3 {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+/* Sections */
+main {
+  padding: 2rem 1rem;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Cards for Projects */
+.card {
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* Responsive Grid */
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 768px) {
+  .grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .grid-cols-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

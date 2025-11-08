@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Fahim</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.3/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+<header class="bg-blue-600 text-white p-4 shadow-md">
+  <div class="container mx-auto flex justify-between items-center">
+    <h1 class="text-3xl font-bold">Fahim</h1>
+    <nav>
+      <a href="index.html" class="px-3 hover:underline">Home</a>
+      <a href="about.html" class="px-3 hover:underline">About</a>
+      <a href="projects.html" class="px-3 hover:underline">Projects</a>
+      <a href="contact.html" class="px-3 hover:underline">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container mx-auto p-6">
+  <h2 class="text-2xl font-semibold mb-4">Get in Touch</h2>
+  <p class="mb-4">Email: <a href="mailto:fahim@example.com" class="text-blue-500 hover:underline">fahim@example.com</a></p>
+  <form action="https://formspree.io/f/mnqvplqe" method="POST" class="flex flex-col max-w-md mx-auto">
+    <input type="text" name="name" placeholder="Your Name" class="mb-2 p-2 border rounded">
+    <input type="email" name="email" placeholder="Your Email" class="mb-2 p-2 border rounded">
+    <textarea name="message" placeholder="Your Message" class="mb-2 p-2 border rounded"></textarea>
+    <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Send Message</button>
+  </form>
+</main>
+
+<footer class="bg-gray-800 text-white p-4 text-center">
+  © 2025 Fahim
+</footer>
+
+</body>
+</html>
