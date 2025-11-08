@@ -3,104 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MySocial Video Lite 🫶</title>
+<title>MyNews 📰</title>
 <style>
-body{margin:0;padding:0;font-family:'Arial',sans-serif;background:#f0f2f5;}
-h1,h2{margin:0;padding:0;}
-button{cursor:pointer;}
-header{background:#4267B2;color:white;display:flex;justify-content:space-between;align-items:center;padding:15px 20px;position:sticky;top:0;z-index:100;}
-header h1{font-size:28px;}
-header input{padding:8px 12px;border-radius:20px;border:none;outline:none;width:50%;font-size:14px;}
-header button{padding:8px 12px;border-radius:8px;border:none;background:#2e81f4;color:white;font-size:14px;transition:background 0.3s;}
-header button:hover{background:#1d5bbf;}
-main{max-width:600px;margin:20px auto;padding:0 10px;}
-#new-post{background:white;padding:15px;border-radius:12px;box-shadow:0 2px 5px rgba(0,0,0,0.2);margin-bottom:20px;}
-#new-post textarea{width:100%;height:80px;padding:10px;border-radius:8px;border:1px solid #ccc;resize:none;font-size:14px;}
-#new-post input[type="text"]{width:100%;padding:8px;margin-top:5px;border-radius:8px;border:1px solid #ccc;font-size:14px;}
-#new-post button{margin-top:10px;padding:8px 15px;background:#4267B2;color:white;border:none;border-radius:8px;font-size:14px;}
-#new-post button:hover{background:#365899;}
-.post{background:white;padding:15px;border-radius:12px;box-shadow:0 2px 5px rgba(0,0,0,0.15);margin-bottom:20px;}
-.post h2{margin-bottom:5px;font-size:20px;color:#4267B2;}
-.post p{margin-bottom:8px;font-size:14px;}
-.post .timestamp{font-size:12px;color:gray;margin-bottom:8px;}
-.post button{padding:6px 12px;border:none;border-radius:8px;background:#2e81f4;color:white;font-size:14px;margin-right:5px;transition:background 0.3s;}
-.post button:hover{background:#1d5bbf;}
-.comment-section{margin-top:10px;}
-.comment-section input{width:65%;padding:6px;border-radius:6px;border:1px solid #ccc;margin-right:5px;font-size:13px;}
-.comment-section button{padding:6px 10px;border-radius:6px;border:none;background:#4267B2;color:white;font-size:13px;}
-.comment-section button:hover{background:#365899;}
-.comment{background:#f0f2f5;padding:6px 10px;border-radius:8px;margin-top:5px;font-size:13px;word-wrap:break-word;}
-iframe{width:100%;height:200px;border:none;border-radius:8px;margin-bottom:10px;}
+/* ===== General ===== */
+body{margin:0;padding:0;font-family:'Arial',sans-serif;background:#f4f4f4;color:#333;}
+a{text-decoration:none;color:#4267B2;}
+img{max-width:100%;border-radius:8px;}
+
+/* ===== Header ===== */
+header{background:#4267B2;color:white;padding:15px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+header h1{margin:0;font-size:28px;}
+nav a{margin-left:15px;font-size:16px;color:white;}
+nav a:hover{text-decoration:underline;}
+header input{padding:6px 10px;border-radius:20px;border:none;outline:none;margin-left:15px;font-size:14px;}
+
+/* ===== Main Content ===== */
+main{max-width:1000px;margin:20px auto;padding:0 15px;display:flex;flex-wrap:wrap;gap:20px;}
+
+/* Featured News */
+.featured{flex:1 1 100%;background:white;padding:15px;border-radius:12px;box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.featured h2{margin:10px 0;font-size:24px;}
+
+/* News Card */
+.news-card{background:white;padding:15px;border-radius:12px;box-shadow:0 2px 5px rgba(0,0,0,0.1);flex:1 1 calc(33% - 20px);display:flex;flex-direction:column;}
+.news-card h3{margin:10px 0;font-size:18px;}
+.news-card p{font-size:14px;margin-bottom:10px;flex-grow:1;}
+
+/* Footer */
+footer{background:#4267B2;color:white;padding:15px;text-align:center;margin-top:30px;}
+footer a{color:white;margin:0 10px;}
+footer a:hover{text-decoration:underline;}
+
+/* Responsive */
+@media(max-width:768px){.news-card{flex:1 1 100%;}}
 </style>
 </head>
 <body>
+
 <header>
-<h1>MySocial Video Lite 🫶</h1>
-<input type="text" id="search" placeholder="Search...">
-<button onclick="login()">Login</button>
+<h1>MyNews 📰</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#">World</a>
+<a href="#">Sports</a>
+<a href="#">Tech</a>
+<a href="#">Entertainment</a>
+</nav>
+<input type="text" placeholder="Search news...">
 </header>
 
 <main>
-<section id="new-post">
-<textarea id="post-text" placeholder="Write something..."></textarea>
-<input type="text" id="video-url" placeholder="YouTube Video URL (optional)">
-<button onclick="addPost()">Post</button>
-</section>
+<!-- Featured News -->
+<div class="featured">
+<img src="https://via.placeholder.com/800x300" alt="Featured News">
+<h2>Featured News Headline</h2>
+<p>Short summary of the featured news story goes here. This is highlighted for readers.</p>
+<a href="#">Read more</a>
+</div>
 
-<div id="feed"></div>
+<!-- News Cards -->
+<div class="news-card">
+<img src="https://via.placeholder.com/300x150" alt="News 1">
+<h3>News Headline 1</h3>
+<p>Short description of the news article. Give a quick overview to the reader.</p>
+<a href="#">Read more</a>
+</div>
+
+<div class="news-card">
+<img src="https://via.placeholder.com/300x150" alt="News 2">
+<h3>News Headline 2</h3>
+<p>Short description of the news article. Give a quick overview to the reader.</p>
+<a href="#">Read more</a>
+</div>
+
+<div class="news-card">
+<img src="https://via.placeholder.com/300x150" alt="News 3">
+<h3>News Headline 3</h3>
+<p>Short description of the news article. Give a quick overview to the reader.</p>
+<a href="#">Read more</a>
+</div>
+
+<div class="news-card">
+<img src="https://via.placeholder.com/300x150" alt="News 4">
+<h3>News Headline 4</h3>
+<p>Short description of the news article. Give a quick overview to the reader.</p>
+<a href="#">Read more</a>
+</div>
+
+<div class="news-card">
+<img src="https://via.placeholder.com/300x150" alt="News 5">
+<h3>News Headline 5</h3>
+<p>Short description of the news article. Give a quick overview to the reader.</p>
+<a href="#">Read more</a>
+</div>
+
+<div class="news-card">
+<img src="https://via.placeholder.com/300x150" alt="News 6">
+<h3>News Headline 6</h3>
+<p>Short description of the news article. Give a quick overview to the reader.</p>
+<a href="#">Read more</a>
+</div>
+
 </main>
 
-<script>
-let currentUser="User1";
-let posts=JSON.parse(localStorage.getItem('posts'))||[];
+<footer>
+<p>&copy; 2025 MyNews. All rights reserved.</p>
+<p>
+<a href="#">Facebook</a> |
+<a href="#">Twitter</a> |
+<a href="#">Instagram</a>
+</p>
+</footer>
 
-function login(){
-    const user=prompt("Enter your username:");
-    if(user){currentUser=user;alert("Welcome, "+currentUser+"!");}
-}
-
-function addPost(){
-    const text=document.getElementById("post-text").value.trim();
-    const videoURL=document.getElementById("video-url").value.trim();
-    if(text==="" && videoURL===""){alert("Write something or add a video!");return;}
-    const timestamp=new Date().toLocaleString();
-    const post={user:currentUser,text:text,video:videoURL,time:timestamp,likes:0,comments:[]};
-    posts.unshift(post);
-    localStorage.setItem('posts',JSON.stringify(posts));
-    renderPosts();
-    document.getElementById("post-text").value="";
-    document.getElementById("video-url").value="";
-}
-
-function likePost(index){posts[index].likes++;localStorage.setItem('posts',JSON.stringify(posts));renderPosts();}
-function addComment(index){const input=document.getElementById('comment-input-'+index);const commentText=input.value.trim();if(commentText===""){return;}posts[index].comments.push({user:currentUser,text:commentText});localStorage.setItem('posts',JSON.stringify(posts));renderPosts();}
-
-function convertYoutubeURL(url){
-    if(url.includes("youtu.be")){return "https://www.youtube.com/embed/"+url.split("/").pop();}
-    if(url.includes("watch?v=")){return "https://www.youtube.com/embed/"+url.split("v=")[1].split("&")[0];}
-    return url;
-}
-
-function renderPosts(){
-    const feed=document.getElementById('feed');
-    feed.innerHTML="";
-    posts.forEach((post,index)=>{
-        const postDiv=document.createElement('div');postDiv.classList.add('post');
-        const userName=document.createElement('h2');userName.innerText=post.user;postDiv.appendChild(userName);
-        const timeDiv=document.createElement('div');timeDiv.classList.add('timestamp');timeDiv.innerText=post.time;postDiv.appendChild(timeDiv);
-        if(post.text!==""){const p=document.createElement('p');p.innerText=post.text;postDiv.appendChild(p);}
-        if(post.video!==""){const iframe=document.createElement('iframe');iframe.src=convertYoutubeURL(post.video);iframe.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";iframe.allowFullscreen=true;postDiv.appendChild(iframe);}
-        const likeBtn=document.createElement('button');likeBtn.innerText="Like 👍 ("+post.likes+")";likeBtn.onclick=function(){likePost(index);};postDiv.appendChild(likeBtn);
-        const commentDiv=document.createElement('div');commentDiv.classList.add('comment-section');
-        const commentInput=document.createElement('input');commentInput.placeholder="Write a comment...";commentInput.id='comment-input-'+index;commentDiv.appendChild(commentInput);
-        const commentBtn=document.createElement('button');commentBtn.innerText="Comment";commentBtn.onclick=function(){addComment(index);};commentDiv.appendChild(commentBtn);
-        post.comments.forEach(c=>{const cDiv=document.createElement('div');cDiv.classList.add('comment');cDiv.innerText=c.user+": "+c.text;commentDiv.appendChild(cDiv);});
-        postDiv.appendChild(commentDiv);
-        feed.appendChild(postDiv);
-    });
-}
-
-renderPosts();
-</script>
 </body>
-</html>
+    </html>
